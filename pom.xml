@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>Automation</groupId>
+	<artifactId>ParallelTest</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>ParallelTest</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<cucumber.version>6.7.0</cucumber.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<parallel>methods</parallel>
+					<useUnlimitedThreads>true</useUnlimitedThreads>
+					<!-- <perCoreThreadCount>false</perCoreThreadCount> -->
+					<!-- <useUnlimitedThreads>true</useUnlimitedThreads> -->
+					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+					<systemPropertyVariables>
+						<extent.reporter.spark.start>true</extent.reporter.spark.start>
+						<extent.reporter.spark.out>test-output/SparkReport/Spark.html</extent.reporter.spark.out>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
+				<version>3.0.0-M5</version> <configuration> <systemPropertyVariables> <extent.reporter.spark.start>true</extent.reporter.spark.start> 
+				<extent.reporter.spark.out>test-output/SparkReport/Spark.html</extent.reporter.spark.out> 
+				</systemPropertyVariables> </configuration> </plugin> -->
+		</plugins>
+	</build>
+	<!-- For Cucumber -->
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-jvm</artifactId>
+			<version>${cucumber.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- <dependency> <groupId>io.cucumber</groupId> <artifactId>cucumber-core</artifactId> 
+			<version>${cucumber.version}</version> </dependency> -->
+		<!-- For dependency Injection -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+		<!-- For Extent Reports -->
+		<!-- Extent Report Adapter for Cucumber -->
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+		<!-- <dependency> <groupId>com.aventstack</groupId> <artifactId>extentreports</artifactId> 
+			<version>4.0.9</version> </dependency> -->
+		<!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber6-adapter -->
+		<dependency>
+			<groupId>tech.grasshopper</groupId>
+			<artifactId>extentreports-cucumber6-adapter</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+		<!-- dependency> <groupId>org.freemarker</groupId> <artifactId>freemarker</artifactId> 
+			<version>2.3.28</version> </dependency> -->
+		<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+		<!-- <dependency> <groupId>org.mongodb</groupId> <artifactId>mongo-java-driver</artifactId> 
+			<version>3.10.2</version> </dependency> -->
+		<!-- https://mvnrepository.com/artifact/com.github.mkolisnyk/cucumber-runner(For 
+			rerunning pupose) -->
+		<!-- https://mvnrepository.com/artifact/com.github.mkolisnyk/cucumber-runner -->
+		<!-- https://mvnrepository.com/artifact/com.github.mkolisnyk/cucumber-runner -->
+		<!-- <dependency> <groupId>com.github.mkolisnyk</groupId> <artifactId>cucumber-runner</artifactId> 
+			<version>1.3.5</version> </dependency> <dependency> <groupId>com.github.mkolisnyk</groupId> 
+			<artifactId>cucumber-report-generator</artifactId> <version>1.3.2</version> 
+			</dependency> -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.8.1</version>
+		</dependency>
+	</dependencies>
+</project>
