@@ -24,13 +24,14 @@ public class Hooks {
 		scenario.getStatus();
 		scenario.getName();
 		System.out.println("Sceanrio has started to execute");
+		System.out.println("user is in before hook now");
 	}
 
 	@After
 	public void tearDown(Scenario scenario) {
 		try {
 			if (scenario.isFailed()) {
-
+				System.out.println("user is in after hook now");
 				TakesScreenshot screenshot = (TakesScreenshot)base.getDriver();
 				byte[] src = screenshot.getScreenshotAs(OutputType.BYTES);
 				scenario.attach(src, "image/png", "screenahot");
